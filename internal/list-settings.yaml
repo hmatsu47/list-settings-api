@@ -1,0 +1,161 @@
+openapi: 3.0.0
+x-stoplight:
+  id: qd9mpbmc80d8y
+info:
+  title: list-settings
+  version: "1.0"
+  contact:
+    name: Hiroyasu Matsuhisa
+    url: "https://github.com/hmatsu47"
+    email: hmatsu47@gmail.com
+  license:
+    name: MIT
+    url: "https://github.com/hmatsu47/list-settings-app/blob/master/LICENSE"
+  description: リリースイメージ一覧用API
+servers:
+  - url: "http://localhost:3000"
+paths:
+  /uriSettings:
+    parameters: []
+    get:
+      summary: リリース設定の取得（URI指定分）
+      operationId: getUriSettings
+      x-internal: false
+      description: リリース設定の取得（URI指定分）
+      responses:
+        "200":
+          $ref: "#/components/responses/uriSettingResponse"
+        default:
+          $ref: "#/components/responses/errorResponse"
+      tags:
+        - uri-settings
+  /tagSettings:
+    get:
+      summary: リリース設定の取得（タグ指定分）
+      tags:
+        - tag-settings
+      responses:
+        "200":
+          $ref: "#/components/responses/tagSettingResponse"
+        default:
+          $ref: "#/components/responses/errorResponse"
+      operationId: getTagSettings
+      description: リリース設定の取得（タグ指定分）
+components:
+  schemas:
+    Error:
+      title: Error
+      x-stoplight:
+        id: heza7782iulsn
+      type: object
+      properties:
+        message:
+          type: string
+      required:
+        - message
+      description: エラーメッセージモデル
+    NextRelease:
+      title: NextRelease
+      x-stoplight:
+        id: 1qotf2z82o87x
+      type: object
+      description: リリース待ち設定モデル
+      properties:
+        image_uri:
+          type: string
+          x-stoplight:
+            id: swm07s8pc17jm
+        release_at:
+          type: string
+          x-stoplight:
+            id: w66eef6nhxqwm
+          format: date-time
+    LastReleased:
+      title: LastReleased
+      x-stoplight:
+        id: lj6lm1gy1yajl
+      type: object
+      description: 最終リリース設定モデル
+      properties:
+        image_uri:
+          type: string
+          x-stoplight:
+            id: 4wk88cya68vkr
+        released_at:
+          type: string
+          x-stoplight:
+            id: salshukcq26bd
+          format: date-time
+    Tag:
+      title: Tag
+      x-stoplight:
+        id: nmywfdixdbix7
+      type: object
+      description: タグ形式リリース設定モデル
+      properties:
+        tags:
+          x-stoplight:
+            id: x28veggsu9bbu
+          type: array
+          items:
+            x-stoplight:
+              id: 0fuv5v1hafhd5
+            type: string
+        repository_name:
+          type: string
+          x-stoplight:
+            id: ib7sj2xfl5c01
+    Uri:
+      title: Uri
+      x-stoplight:
+        id: exs7hc86o5ew7
+      type: object
+      description: URI形式リリース設定モデル
+      properties:
+        last_released:
+          $ref: "#/components/schemas/LastReleased"
+          x-stoplight:
+            id: gmm2hv4o13hz5
+        next_release:
+          $ref: "#/components/schemas/NextRelease"
+          x-stoplight:
+            id: l2clytvpusep4
+        service_name:
+          type: string
+          x-stoplight:
+            id: u2oy85cfmxav4
+  parameters: {}
+  requestBodies: {}
+  responses:
+    uriSettingResponse:
+      description: URI形式の設定レスポンスボディ
+      content:
+        application/xml:
+          schema:
+            type: array
+            items:
+              $ref: "#/components/schemas/Uri"
+              x-stoplight:
+                id: 4jwz5r74l108n
+    errorResponse:
+      description: エラーメッセージレスポンスボディ
+      content:
+        application/json:
+          schema:
+            $ref: "#/components/schemas/Error"
+    tagSettingResponse:
+      description: タグ形式の設定レスポンスボディ
+      content:
+        application/json:
+          schema:
+            type: array
+            items:
+              $ref: "#/components/schemas/Tag"
+              x-stoplight:
+                id: 1xpvjg9a2g2as
+  securitySchemes: {}
+tags:
+  - name: tag-settings
+    description: タグ形式の設定
+  - name: uri-settings
+    description: URI形式の設定
