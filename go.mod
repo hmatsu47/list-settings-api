@@ -1,6 +1,6 @@
 module github.com/hmatsu47/list-settings-api
 
-go 1.19
+go 1.18
 
 require (
 	github.com/getkin/kin-openapi v0.115.0

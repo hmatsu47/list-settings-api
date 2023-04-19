@@ -27,6 +27,7 @@ type NextRelease struct {
 // Tag タグ形式リリース設定モデル
 type Tag struct {
 	RepositoryName *string   `json:"repository_name,omitempty"`
+	SettingUrl     *string   `json:"setting_url,omitempty"`
 	Tags           *[]string `json:"tags,omitempty"`
 }
 
@@ -38,6 +39,7 @@ type Uri struct {
 	// NextRelease リリース待ち設定モデル
 	NextRelease *NextRelease `json:"next_release,omitempty"`
 	ServiceName *string      `json:"service_name,omitempty"`
+	SettingUrl  *string      `json:"setting_url,omitempty"`
 }
 
 // ErrorResponse エラーメッセージモデル
