@@ -14,20 +14,21 @@ type Error struct {
 
 // LastReleased 最終リリース設定モデル
 type LastReleased struct {
-	ImageUri   *string    `json:"image_uri,omitempty"`
-	ReleasedAt *time.Time `json:"released_at,omitempty"`
+	ImageUri   string    `json:"image_uri"`
+	ReleasedAt time.Time `json:"released_at"`
 }
 
 // NextRelease リリース待ち設定モデル
 type NextRelease struct {
-	ImageUri  *string    `json:"image_uri,omitempty"`
-	ReleaseAt *time.Time `json:"release_at,omitempty"`
+	ImageUri  string    `json:"image_uri"`
+	ReleaseAt time.Time `json:"release_at"`
 }
 
 // Tag タグ形式リリース設定モデル
 type Tag struct {
-	RepositoryName *string   `json:"repository_name,omitempty"`
-	SettingUrl     *string   `json:"setting_url,omitempty"`
+	RepositoryName string    `json:"repository_name"`
+	SettingTitle   string    `json:"setting_title"`
+	SettingUrl     string    `json:"setting_url"`
 	Tags           *[]string `json:"tags,omitempty"`
 }
 
@@ -37,9 +38,10 @@ type Uri struct {
 	LastReleased *LastReleased `json:"last_released,omitempty"`
 
 	// NextRelease リリース待ち設定モデル
-	NextRelease *NextRelease `json:"next_release,omitempty"`
-	ServiceName *string      `json:"service_name,omitempty"`
-	SettingUrl  *string      `json:"setting_url,omitempty"`
+	NextRelease  *NextRelease `json:"next_release,omitempty"`
+	ServiceName  string       `json:"service_name"`
+	SettingTitle string       `json:"setting_title"`
+	SettingUrl   string       `json:"setting_url"`
 }
 
 // ErrorResponse エラーメッセージモデル

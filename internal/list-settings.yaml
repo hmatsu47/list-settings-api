@@ -70,6 +70,9 @@ components:
           x-stoplight:
             id: w66eef6nhxqwm
           format: date-time
+      required:
+        - image_uri
+        - release_at
     LastReleased:
       title: LastReleased
       x-stoplight:
@@ -86,6 +89,9 @@ components:
           x-stoplight:
             id: salshukcq26bd
           format: date-time
+      required:
+        - image_uri
+        - released_at
     Tag:
       title: Tag
       x-stoplight:
@@ -109,6 +115,14 @@ components:
           type: string
           x-stoplight:
             id: hlw9tm6k2culo
+        setting_title:
+          type: string
+          x-stoplight:
+            id: j4eif3yktxzil
+      required:
+        - repository_name
+        - setting_url
+        - setting_title
     Uri:
       title: Uri
       x-stoplight:
@@ -132,6 +146,14 @@ components:
           type: string
           x-stoplight:
             id: tatu4xpegxgxl
+        setting_title:
+          type: string
+          x-stoplight:
+            id: o4qbgkn261es1
+      required:
+        - service_name
+        - setting_url
+        - setting_title
   parameters: {}
   requestBodies: {}
   responses:
