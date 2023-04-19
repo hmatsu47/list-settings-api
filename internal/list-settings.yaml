@@ -54,25 +54,6 @@ components:
       required:
         - message
       description: エラーメッセージモデル
-    NextRelease:
-      title: NextRelease
-      x-stoplight:
-        id: 1qotf2z82o87x
-      type: object
-      description: リリース待ち設定モデル
-      properties:
-        image_uri:
-          type: string
-          x-stoplight:
-            id: swm07s8pc17jm
-        release_at:
-          type: string
-          x-stoplight:
-            id: w66eef6nhxqwm
-          format: date-time
-      required:
-        - image_uri
-        - release_at
     LastReleased:
       title: LastReleased
       x-stoplight:
@@ -92,6 +73,25 @@ components:
       required:
         - image_uri
         - released_at
+    NextRelease:
+      title: NextRelease
+      x-stoplight:
+        id: 1qotf2z82o87x
+      type: object
+      description: リリース待ち設定モデル
+      properties:
+        image_uri:
+          type: string
+          x-stoplight:
+            id: swm07s8pc17jm
+        release_at:
+          type: string
+          x-stoplight:
+            id: w66eef6nhxqwm
+          format: date-time
+      required:
+        - image_uri
+        - release_at
     Tag:
       title: Tag
       x-stoplight:
@@ -99,14 +99,6 @@ components:
       type: object
       description: タグ形式リリース設定モデル
       properties:
-        tags:
-          x-stoplight:
-            id: x28veggsu9bbu
-          type: array
-          items:
-            x-stoplight:
-              id: 0fuv5v1hafhd5
-            type: string
         repository_name:
           type: string
           x-stoplight:
@@ -119,6 +111,14 @@ components:
           type: string
           x-stoplight:
             id: j4eif3yktxzil
+        tags:
+          x-stoplight:
+            id: x28veggsu9bbu
+          type: array
+          items:
+            x-stoplight:
+              id: 0fuv5v1hafhd5
+            type: string
       required:
         - repository_name
         - setting_url
@@ -130,6 +130,10 @@ components:
       type: object
       description: URI形式リリース設定モデル
       properties:
+        environment_name:
+          type: string
+          x-stoplight:
+            id: xwpul919mjk1b
         last_released:
           $ref: '#/components/schemas/LastReleased'
           x-stoplight:
@@ -151,6 +155,7 @@ components:
           x-stoplight:
             id: o4qbgkn261es1
       required:
+        - environment_name
         - service_name
         - setting_url
         - setting_title

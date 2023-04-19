@@ -34,6 +34,8 @@ type Tag struct {
 
 // Uri URI形式リリース設定モデル
 type Uri struct {
+	EnvironmentName string `json:"environment_name"`
+
 	// LastReleased 最終リリース設定モデル
 	LastReleased *LastReleased `json:"last_released,omitempty"`
 
