@@ -6,6 +6,7 @@ import (
 	"log"
 	"net/http"
 	"os"
+	"strings"
 
 	"github.com/gin-gonic/gin"
 
@@ -41,15 +42,32 @@ func NewGinListSettingsServer(listSettings *api.ListSettings, port int) *http.Se
 
 func main() {
 	port := flag.Int("port", 28080, "Port for API server")
+	configPathPrefix := ""
+	tagRepositoryUri := ""
 	flag.Parse()
-	// リポジトリ URI・付与するタグはコマンドラインパラメータで取得
-	tagRepositoryUri := flag.Arg(0)
-	if tagRepositoryUri == "" {
-		panic("リポジトリの指定がありません")
+	if flag.NArg() == 0 {
+		panic("タグの情報が指定されていません")
 	}
-	var selectTags []string
+	// タグと対応する環境名はコマンドラインパラメータで取得
+	var tagKeys []api.TagKey
+	for i, v := range flag.Args() {
+		if i == 0 {
+			configPathPrefix = v
+		} else if i == 1 {
+			tagRepositoryUri = v
+		} else {
+			tag := api.TagKey{
+				TagName:         strings.Split(v, ":")[0],
+				EnvironmentName: strings.Split(v, ":")[1],
+			}
+			tagKeys = append(tagKeys, tag)
+		}
+	}
+	if tagRepositoryUri == "" {
+		panic("タグ形式一覧用のECRリポジトリURIが指定されていません")
+	}
 	// Server Instance 生成
-	listSettings := api.NewListSettings(tagRepositoryUri, selectTags)
+	listSettings := api.NewListSettings(configPathPrefix, tagRepositoryUri, &tagKeys)
 	s := NewGinListSettingsServer(listSettings, *port)
 	// 停止まで HTTP Request を処理
 	log.Fatal(s.ListenAndServe())

@@ -24,30 +24,29 @@ type NextRelease struct {
 	ReleaseAt time.Time `json:"release_at"`
 }
 
-// Tag タグ形式リリース設定モデル
-type Tag struct {
-	RepositoryName string    `json:"repository_name"`
-	SettingTitle   string    `json:"setting_title"`
-	SettingUrl     string    `json:"setting_url"`
-	Tags           *[]string `json:"tags,omitempty"`
+// TagSetting タグ形式リリース設定モデル
+type TagSetting struct {
+	EnvironmentName string    `json:"environment_name"`
+	Tags            *[]string `json:"tags,omitempty"`
 }
 
-// Uri URI形式リリース設定モデル
-type Uri struct {
+// UriSetting URI形式リリース設定モデル
+type UriSetting struct {
 	EnvironmentName string `json:"environment_name"`
 
 	// LastReleased 最終リリース設定モデル
 	LastReleased *LastReleased `json:"last_released,omitempty"`
 
 	// NextRelease リリース待ち設定モデル
-	NextRelease  *NextRelease `json:"next_release,omitempty"`
-	ServiceName  string       `json:"service_name"`
-	SettingTitle string       `json:"setting_title"`
-	SettingUrl   string       `json:"setting_url"`
+	NextRelease *NextRelease `json:"next_release,omitempty"`
+	ServiceName string       `json:"service_name"`
 }
 
 // ErrorResponse エラーメッセージモデル
 type ErrorResponse = Error
 
 // TagSettingResponse defines model for tagSettingResponse.
-type TagSettingResponse = []Tag
+type TagSettingResponse = []TagSetting
+
+// UriSettingResponse defines model for uriSettingResponse.
+type UriSettingResponse = []UriSetting
