@@ -67,7 +67,7 @@ func main() {
 	tagRepositoryUri := ""
 	var origins []string
 	flag.Parse()
-	if flag.NArg() < 4 {
+	if flag.NArg() < 2 {
 		panic("必要なパラメーターが指定されていません")
 	}
 	// タグと対応する環境名はコマンドラインパラメータで取得
@@ -87,9 +87,6 @@ func main() {
 			}
 			tagKeys = append(tagKeys, tag)
 		}
-	}
-	if tagRepositoryUri == "" {
-		panic("タグ形式一覧用のECRリポジトリURIが指定されていません")
 	}
 	// Server Instance 生成
 	listSettings := api.NewListSettings(configPathPrefix, tagRepositoryUri, &tagKeys)
