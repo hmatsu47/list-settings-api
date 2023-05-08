@@ -48,6 +48,10 @@ func (l *ListSettings) GetUriSettings(c *gin.Context) {
 // リリース設定一覧の取得（タグ指定分）
 func (l *ListSettings) GetTagSettings(c *gin.Context) {
 	var result []TagSetting
+	if l.TagRepositoryUri == "" {
+		c.JSON(http.StatusOK, result)
+		return
+	}
 	region := strings.Split(l.TagRepositoryUri, ".")[3]
 	ecrClient, err := EcrClient(region)
 	if err != nil {

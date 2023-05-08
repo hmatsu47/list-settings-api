@@ -109,7 +109,7 @@ func ReadSettings(pathPrefix string) (*[]UriSetting, error) {
     }
     // 環境名・サービス名をソート
     sort.Slice(repositoryItems, func(i, j int) bool {
-        return fmt.Sprintf("%s_%s", repositoryItems[i].EnvironmentName, repositoryItems[i].ServiceName) < fmt.Sprintf("%s_%s", repositoryItems[j].EnvironmentName, repositoryItems[j].ServiceName)
+        return fmt.Sprintf("%s %s", repositoryItems[i].EnvironmentName, repositoryItems[i].ServiceName) < fmt.Sprintf("%s %s", repositoryItems[j].EnvironmentName, repositoryItems[j].ServiceName)
     })
 
 	return &repositoryItems, err
