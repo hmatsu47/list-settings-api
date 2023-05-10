@@ -6,6 +6,7 @@ require (
 	github.com/deepmap/oapi-codegen v1.12.4
 	github.com/getkin/kin-openapi v0.115.0
 	github.com/gin-gonic/gin v1.9.0
+	github.com/stretchr/testify v1.8.1
 )
 
 require (
@@ -19,8 +20,15 @@ require (
 	github.com/aws/aws-sdk-go-v2/service/ssooidc v1.14.8 // indirect
 	github.com/aws/aws-sdk-go-v2/service/sts v1.18.9 // indirect
 	github.com/aws/smithy-go v1.13.5 // indirect
+	github.com/davecgh/go-spew v1.1.1 // indirect
 	github.com/gorilla/mux v1.8.0 // indirect
 	github.com/jmespath/go-jmespath v0.4.0 // indirect
+	github.com/labstack/echo/v4 v4.9.1 // indirect
+	github.com/labstack/gommon v0.4.0 // indirect
+	github.com/mattn/go-colorable v0.1.13 // indirect
+	github.com/pmezard/go-difflib v1.0.0 // indirect
+	github.com/valyala/bytebufferpool v1.0.0 // indirect
+	github.com/valyala/fasttemplate v1.2.2 // indirect
 )
 
 require (
