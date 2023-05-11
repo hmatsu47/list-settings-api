@@ -11,12 +11,8 @@ import (
 type ECRParams struct {
 	RepositoryName  string
 	RegistryId      string
-	ImageIds        []types.ImageIdentifier
 	ImageDetails    []types.ImageDetail
 	MaxResults      int32
-	AttachTagName   string
-	SelectedTagName string
-	Images          []types.Image
 }
 
 // モック生成用
