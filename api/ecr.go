@@ -58,6 +58,7 @@ func contains(elems []string, v string) bool {
 // TagSettingList を取得
 func GetTagSettingList(imageDetails []types.ImageDetail, tagKeys []TagKey) []TagSetting {
 	var settingList []TagSetting
+	var envList []string
 	for _, v := range imageDetails {
 		tags := v.ImageTags
 
@@ -71,8 +72,20 @@ func GetTagSettingList(imageDetails []types.ImageDetail, tagKeys []TagKey) []Tag
 						EnvironmentName: st.EnvironmentName,
 					}
 					settingList = append(settingList, setting)
+					envList = append(envList, st.EnvironmentName)
 				}
 			}
+		}
+	}
+	// 対象イメージがなかったタグの補完
+	for _, sl := range tagKeys {
+		if !contains(envList, sl.EnvironmentName) {
+			var dummyTags []string = []string{"（未指定）"}
+			setting := TagSetting{
+				Tags:            &dummyTags,
+				EnvironmentName: sl.EnvironmentName,
+			}
+			settingList = append(settingList, setting)
 		}
 	}
 	// 結果を環境名でソート
