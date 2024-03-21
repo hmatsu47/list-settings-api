@@ -98,6 +98,9 @@ components:
         id: nmywfdixdbix7
       type: object
       description: タグ形式リリース設定モデル
+      required:
+        - environment_name
+        - tags
       properties:
         environment_name:
           type: string
@@ -107,12 +110,16 @@ components:
           x-stoplight:
             id: x28veggsu9bbu
           type: array
+          description: 1つも存在しなかった場合は要素が1つだけの配列として文字列「（未指定）」を返す
           items:
             x-stoplight:
               id: 0fuv5v1hafhd5
             type: string
-      required:
-        - environment_name
+        pushed_at:
+          type: string
+          x-stoplight:
+            id: ympvitk3xasg4
+          format: date-time
     UriSetting:
       title: UriSetting
       x-stoplight:

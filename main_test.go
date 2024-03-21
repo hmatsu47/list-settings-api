@@ -338,9 +338,13 @@ func TestListSettings3(t *testing.T) {
 		assert.NoError(t, err)
 		assert.Equal(t, 2, len(settingList))
 		assert.Equal(t, "dev", settingList[0].EnvironmentName)
-		assert.Equal(t, tags2, *settingList[0].Tags)
+		assert.Equal(t, tags2, settingList[0].Tags)
+		expectedTime1, _ := time.Parse("2006-01-02T15:04:05Z07:00", "2022-05-01T05:07:10Z")
+		assert.Equal(t, expectedTime1, *settingList[0].PushedAt)
 		assert.Equal(t, "prod", settingList[1].EnvironmentName)
-		assert.Equal(t, tags1, *settingList[1].Tags)
+		assert.Equal(t, tags1, settingList[1].Tags)
+		expectedTime2, _ := time.Parse("2006-01-02T15:04:05Z07:00", "2023-05-10T05:27:02Z")
+		assert.Equal(t, expectedTime2, *settingList[1].PushedAt)
 	})
 	// このモック利用テスト実施との差分を考えると GetTagSettingList を単独でテストする意味はないので実施しない
 }

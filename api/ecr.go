@@ -64,12 +64,14 @@ func GetTagSettingList(imageDetails []types.ImageDetail, tagKeys []TagKey) []Tag
 
 		if len(tags) > 0 {
 			// タグがあるイメージのみ検索対象に
+			pushedAt := v.ImagePushedAt
 			for _, st := range tagKeys {
 				if contains(tags, st.TagName) {
 					// 対象イメージ
 					setting := TagSetting{
-						Tags:            &tags,
+						Tags:            tags,
 						EnvironmentName: st.EnvironmentName,
+						PushedAt:        pushedAt,
 					}
 					settingList = append(settingList, setting)
 					envList = append(envList, st.EnvironmentName)
@@ -82,7 +84,7 @@ func GetTagSettingList(imageDetails []types.ImageDetail, tagKeys []TagKey) []Tag
 		if !contains(envList, sl.EnvironmentName) {
 			var dummyTags []string = []string{"（未指定）"}
 			setting := TagSetting{
-				Tags:            &dummyTags,
+				Tags:            dummyTags,
 				EnvironmentName: sl.EnvironmentName,
 			}
 			settingList = append(settingList, setting)

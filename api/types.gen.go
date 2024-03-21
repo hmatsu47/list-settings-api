@@ -26,8 +26,11 @@ type NextRelease struct {
 
 // TagSetting タグ形式リリース設定モデル
 type TagSetting struct {
-	EnvironmentName string    `json:"environment_name"`
-	Tags            *[]string `json:"tags,omitempty"`
+	EnvironmentName string     `json:"environment_name"`
+	PushedAt        *time.Time `json:"pushed_at,omitempty"`
+
+	// Tags 1つも存在しなかった場合は要素が1つだけの配列として文字列「（未指定）」を返す
+	Tags []string `json:"tags"`
 }
 
 // UriSetting URI形式リリース設定モデル
